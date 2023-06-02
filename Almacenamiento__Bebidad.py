@@ -36,10 +36,22 @@ def ejecutaconsultaP():
         tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
         
 def clas():
+    rsUsu= controlador.prom()
+    for usu in rsUsu:
+            cadena= str(usu[0])
+    if(rsUsu): 
+            textBus.config(state='normal')  # Configuración del estado del widget Text
+            textBus.delete(1.0, 'end')  # Limpia el contenido del widget Text
+            textBus.insert('end', cadena)  # Inserta la cadena en el widget Text
+            textBus.config(state='disabled')  # Restaura el estado del widget Text a 'disabled'
     rUsu = controlador.clas()
     tabla.delete(*tabla.get_children())
     for usu in rUsu:
         tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
+    rUsu = controlador.mc()
+    tabla1.delete(*tabla1.get_children())
+    for usu in rUsu:
+        tabla1.insert('', 'end', text=usu[0], values=(usu[1], usu[2], usu[3]))
 
 ventana = Tk()
 ventana.title("Almacen_Beb")
@@ -160,8 +172,14 @@ Consultar= Button(pestaña4,text="Consultar",command=ejecutaconsulta).pack()
 
 #Calculos
 
+tituloo = Label(pestaña5,text="Promedio Precios:",fg ="green",font=("Modern",18)).pack()
+
+subBus= Label(pestaña5,text= "Promedio:",fg="blue",font=("Modern",15)).pack()
+textBus = tk.Text(pestaña5, height=1, width=10)
+textBus.pack() 
+
 subUS= Label(pestaña5,text= "Clasificacion:",fg="green",font=("Modern",15)).pack()
-tabla = ttk.Treeview(pestaña5,height=3)
+tabla = ttk.Treeview(pestaña5,height=2)
 tabla['columns'] = ('azucar', 'ener')
 tabla.column('#0', width=120, minwidth=120)
 tabla.column('azucar', width=120, minwidth=120)
@@ -170,6 +188,19 @@ tabla.heading('#0', text='Agua', anchor=tk.CENTER)
 tabla.heading('azucar', text='Azucaradas', anchor=tk.CENTER)
 tabla.heading('ener', text='Energeticas', anchor=tk.CENTER)
 tabla.pack() 
+
+subS= Label(pestaña5,text= "Marca:",fg="green",font=("Modern",15)).pack()
+tabla1 = ttk.Treeview(pestaña5,height=2)
+tabla1['columns'] = ( 'cc', 'mt','rb')
+tabla1.column('#0', width=120, minwidth=120)
+tabla1.column('cc', width=120, minwidth=120)
+tabla1.column('mt', width=120, minwidth=120)
+tabla1.column('rb', width=120, minwidth=120)
+tabla1.heading('#0', text='Pepsi', anchor=tk.CENTER)
+tabla1.heading('cc', text='Coca-cola', anchor=tk.CENTER)
+tabla1.heading('mt', text='Monster', anchor=tk.CENTER)
+tabla1.heading('rb', text='Red Bull', anchor=tk.CENTER)
+tabla1.pack() 
 
 btnClas = Button(pestaña5,text="Consultar", command=clas)
 btnClas.pack()

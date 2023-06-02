@@ -109,3 +109,16 @@ class Alm_clase:
             return RSUsuarios
         except sqlite3.OperationalError:
             print("Error")
+            
+    def mc(self):
+        conx = self.conexionDB()
+        try:
+            cursor=conx.cursor()
+            sqlselect= "select * from VistaMarcas"
+            cursor.execute(sqlselect)
+            RSUsuarios = cursor.fetchall()
+            conx.close()
+            print(RSUsuarios)
+            return RSUsuarios
+        except sqlite3.OperationalError:
+            print("Error")
