@@ -14,7 +14,7 @@ def ejecutaconsulta():
     # Obtiene los usuarios de la base de datos
     rUsu= controlador.consulta()
     # Borra los datos existentes en la tabla
-    tabla.delete(*tabla.get_children())
+    tabla0.delete(*tabla0.get_children())
     # Inserta los nuevos datos en la tabla
     for usu in rUsu:
         tabla0.insert('', 'end', text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
@@ -25,15 +25,6 @@ def ejecutaACT(varNomAE, varPAE, varClasAE, varMcAE):
 def ejecutadelete():
     controlador.eliminar(varElim.get())        
     
-
-def ejecutaconsultaP():
-    # Obtiene los usuarios de la base de datos
-    rUsu= controlador.consultaP()
-    # Borra los datos existentes en la tabla
-    tabla0.delete(*tabla0.get_children())
-    # Inserta los nuevos datos en la tabla
-    for usu in rUsu:
-        tabla0.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
         
 def clas():
     rsUsu= controlador.prom()
