@@ -19,8 +19,8 @@ def ejecutaconsulta():
     for usu in rUsu:
         tabla0.insert('', 'end', text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
         
-def ejecutaACT(varNomAE, varPAE, varClasAE, varMcAE):
-    controlador.actualizar(varAct.get(),varNomAE.get(), varPAE.get(), varClasAE.get(), varMcAE.get())
+def ejecutaACT(varNomAE, varPAE, varClaAE, varMcAE):
+    controlador.actualizar(varAct.get(),varNomAE.get(), varPAE.get(), varClaAE.get(), varMcAE.get())
     
 def ejecutadelete():
     controlador.eliminar(varElim.get())        
@@ -139,7 +139,7 @@ opciones2 = ["Pepsi", "Coca-cola", "Monster", "Red_Bull"]
 txtMarAE = ttk.Combobox(pestaña3, values=opciones2, width=30)
 txtMarAE.pack()
 
-btnACT = Button(pestaña3,text="Actualizar bebida", command=lambda: ejecutaACT(varNomAE, varPAE, varClasAE, varMcAE))
+btnACT = Button(pestaña3,text="Actualizar bebida", command=lambda: ejecutaACT(varNomAE, varPAE, txtClaAE, txtMarAE))
 btnACT.pack()
 
 

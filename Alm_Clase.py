@@ -101,7 +101,7 @@ class Alm_clase:
         conx = self.conexionDB()
         try:
             cursor=conx.cursor()
-            sqlselect= "select * from VistaClasificaciones"
+            sqlselect= "select * from VistaClasif"
             cursor.execute(sqlselect)
             RSUsuarios = cursor.fetchall()
             conx.close()
