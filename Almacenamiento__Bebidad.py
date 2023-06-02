@@ -34,6 +34,13 @@ def ejecutaconsultaP():
     # Inserta los nuevos datos en la tabla
     for usu in rUsu:
         tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
+        
+def clas():
+    rUsu = controlador.clas()
+    tabla.delete(*tabla.get_children())
+    for usu in rUsu:
+        tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
+
 ventana = Tk()
 ventana.title("Almacen_Beb")
 ventana.geometry("800x400")
@@ -45,37 +52,37 @@ pestaña1 = ttk.Frame(panel)
 pestaña2 = ttk.Frame(panel)
 pestaña3 = ttk.Frame(panel)
 pestaña4 = ttk.Frame(panel)
+pestaña5 = ttk.Frame(panel)
 
 
 #Alta de bebida
 titulo = Label(pestaña1,text="Alta de bebidas",fg="blue",font=("Modern",18)).pack()
 
 Nom = Label(pestaña1, text="Nombre:")
-Nom.place(x=50,y=50)
+Nom.pack()
 Nombre = ttk.Entry(pestaña1,width= 30)
-Nombre.place(x=200,y=50)
+Nombre.pack()
     
 
 Pr = Label(pestaña1, text="Ingrese Precio:")
-Pr.place(x=50,y=80)
+Pr.pack()
 PR = ttk.Entry(pestaña1,width= 30)
-PR.place(x=200,y=80)
+PR.pack()
 
+Clas = ttk.Label(pestaña1, text="Ingrese Clasificacion: ")
+Clas.pack()
+opciones = ["Agua", "Bebida_Azucarada", "Bebida_Energetica"]
+Clasif = ttk.Combobox(pestaña1, values=opciones, width=30)
+Clasif.pack()
 
-Clas = Label(pestaña1, text="Ingrese Clasificacion: ")
-Clas.place(x=50,y=110)
-Clasif = ttk.Entry(pestaña1,width=30)
-Clasif.place(x=200,y=110)
-    
-
-Mc = Label(pestaña1, text="Ingrese Marca: ")
-Mc.place(x=50,y=140)
-Marca = ttk.Entry(pestaña1,width=30)
-Marca.place(x=200,y=140)
-
+Mc = ttk.Label(pestaña1, text="Ingrese Marca: ")
+Mc.pack()
+opciones2 = ["Pepsi", "Coca-cola", "Monster", "Red_Bull"]
+Marca = ttk.Combobox(pestaña1, values=opciones2, width=30)
+Marca.pack()
 
 BotonRegistrar = Button(pestaña1,text="Registrar",bg="#255748",fg="white",command=ejecutaInsert)
-BotonRegistrar.place(y=200, x= 220)
+BotonRegistrar.pack()
 
 #Baja de bebida
 titulo3 = Label(pestaña2,text="Eliminar Usuario:",fg ="red",font=("Modern",18))
@@ -112,21 +119,21 @@ txtNomAE = Entry(pestaña3,textvariable=varNomAE)
 txtNomAE.pack()
 
 varPAE = tk.StringVar()
-lblPAE = Label(pestaña3,text="Nuevos precio: ")
+lblPAE = Label(pestaña3,text="Nuevo precio: ")
 lblPAE.pack()
 txtPAE = Entry(pestaña3,textvariable=varPAE)
 txtPAE.pack()
 
-varClasAE = tk.StringVar()
-lblClasAE = Label(pestaña3,text="Nueva clasificacion: ")
+lblClasAE = ttk.Label(pestaña3, text="Ingrese nueva clasificacion: ")
 lblClasAE.pack()
-txtClaAE = Entry(pestaña3,textvariable=varClasAE)
+opciones = ["Agua", "Bebida_Azucarada", "Bebida_Energetica"]
+txtClaAE = ttk.Combobox(pestaña3, values=opciones, width=30)
 txtClaAE.pack()
 
-varMcAE = tk.StringVar()
-lblMcAE = Label(pestaña3,text="Nueva marca: ")
-lblMcAE.pack()
-txtMarAE = Entry(pestaña3,textvariable=varMcAE)
+varMcAE = ttk.Label(pestaña3, text="Ingrese nueva marca: ")
+varMcAE.pack()
+opciones2 = ["Pepsi", "Coca-cola", "Monster", "Red_Bull"]
+txtMarAE = ttk.Combobox(pestaña3, values=opciones2, width=30)
 txtMarAE.pack()
 
 btnACT = Button(pestaña3,text="Actualizar bebida", command=lambda: ejecutaACT(varNomAE, varPAE, varClasAE, varMcAE))
@@ -153,13 +160,26 @@ Consultar= Button(pestaña4,text="Consultar",command=ejecutaconsulta).pack()
 
 #Calculos
 
+subUS= Label(pestaña5,text= "Clasificacion:",fg="green",font=("Modern",15)).pack()
+tabla = ttk.Treeview(pestaña5,height=3)
+tabla['columns'] = ('azucar', 'ener')
+tabla.column('#0', width=120, minwidth=120)
+tabla.column('azucar', width=120, minwidth=120)
+tabla.column('ener', width=120, minwidth=120)
+tabla.heading('#0', text='Agua', anchor=tk.CENTER)
+tabla.heading('azucar', text='Azucaradas', anchor=tk.CENTER)
+tabla.heading('ener', text='Energeticas', anchor=tk.CENTER)
+tabla.pack() 
 
+btnClas = Button(pestaña5,text="Consultar", command=clas)
+btnClas.pack()
 vacio =""
 
 panel.add(pestaña1,text="Alta bebidas")
 panel.add(pestaña2,text="Dar de baja")
 panel.add(pestaña3,text="Actualizar")
-panel.add(pestaña4,text="Mostrar")
+panel.add(pestaña4,text="Consultar")
+panel.add(pestaña5,text="Calculos")
 
 
 ventana.mainloop()

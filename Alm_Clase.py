@@ -97,3 +97,15 @@ class Alm_clase:
             return RSUsuarios
         except sqlite3.OperationalError:
             print("Error")
+    def clas(self):
+        conx = self.conexionDB()
+        try:
+            cursor=conx.cursor()
+            sqlselect= "select * from VistaClasificaciones"
+            cursor.execute(sqlselect)
+            RSUsuarios = cursor.fetchall()
+            conx.close()
+            print(RSUsuarios)
+            return RSUsuarios
+        except sqlite3.OperationalError:
+            print("Error")
