@@ -17,7 +17,7 @@ def ejecutaconsulta():
     tabla.delete(*tabla.get_children())
     # Inserta los nuevos datos en la tabla
     for usu in rUsu:
-        tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
+        tabla0.insert('', 'end', text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
         
 def ejecutaACT(varNomAE, varPAE, varClasAE, varMcAE):
     controlador.actualizar(varAct.get(),varNomAE.get(), varPAE.get(), varClasAE.get(), varMcAE.get())
@@ -30,10 +30,10 @@ def ejecutaconsultaP():
     # Obtiene los usuarios de la base de datos
     rUsu= controlador.consultaP()
     # Borra los datos existentes en la tabla
-    tabla.delete(*tabla.get_children())
+    tabla0.delete(*tabla0.get_children())
     # Inserta los nuevos datos en la tabla
     for usu in rUsu:
-        tabla.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
+        tabla0.insert('', 'end', text=usu[0], values=(usu[1], usu[2]))
         
 def clas():
     rsUsu= controlador.prom()
@@ -154,19 +154,19 @@ btnACT.pack()
 
 #Consultar bebidas
 subUS= Label(pestaña4,text= "Bebidas:",fg="green",font=("Modern",15)).pack()
-tabla = ttk.Treeview(pestaña4)
-tabla['columns'] = ('nombre','precio', 'clasificacion','marca')
-tabla.column('#0', width=50, minwidth=50)
-tabla.column('nombre', width=120, minwidth=120)
-tabla.column('precio', width=120, minwidth=120)
-tabla.column('clasificacion', width=150, minwidth=150)
-tabla.column('marca', width=150, minwidth=150)
-tabla.heading('#0', text='ID', anchor=tk.CENTER)
-tabla.heading('nombre', text='Nombre', anchor=tk.CENTER)
-tabla.heading('precio', text='Precio', anchor=tk.CENTER)
-tabla.heading('clasificacion', text='Clasificacion', anchor=tk.CENTER)
-tabla.heading('marca', text='Marca', anchor=tk.CENTER)
-tabla.pack() 
+tabla0 = ttk.Treeview(pestaña4)
+tabla0['columns'] = ('nombre','precio', 'clasificacion','marca')
+tabla0.column('#0', width=50, minwidth=50)
+tabla0.column('nombre', width=120, minwidth=120)
+tabla0.column('precio', width=120, minwidth=120)
+tabla0.column('clasificacion', width=150, minwidth=150)
+tabla0.column('marca', width=150, minwidth=150)
+tabla0.heading('#0', text='ID', anchor=tk.CENTER)
+tabla0.heading('nombre', text='Nombre', anchor=tk.CENTER)
+tabla0.heading('precio', text='Precio', anchor=tk.CENTER)
+tabla0.heading('clasificacion', text='Clasificacion', anchor=tk.CENTER)
+tabla0.heading('marca', text='Marca', anchor=tk.CENTER)
+tabla0.pack() 
 
 Consultar= Button(pestaña4,text="Consultar",command=ejecutaconsulta).pack()
 
